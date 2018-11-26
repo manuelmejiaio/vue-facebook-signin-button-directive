@@ -16,6 +16,7 @@ Vue.directive('facebook-signin-button', {
         xfbml: true,
         version: 'v3.1'
       })
+      FB.logout()
     }
 
     el.addEventListener('click', PopUp)
@@ -31,7 +32,6 @@ Vue.directive('facebook-signin-button', {
     }
     function OnSuccess (token) {
       vnode.context.OnFacebookAuthSuccess(token)
-      FB.logout()
     }
     function Onfail () {
       vnode.context.OnFacebookAuthFail('Facebook sign-in failed')
