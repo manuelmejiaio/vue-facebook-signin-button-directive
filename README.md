@@ -8,6 +8,8 @@
 
 ``` bash
 $ npm install --save vue-facebook-signin-button-directive
+
+$ yarn add vue-facebook-signin-button-directive
 ```
 ## Usage
 

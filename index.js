@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-Vue.directive('facebook-signin-button', {
+export default Vue.directive('facebook-signin-button', {
   bind: function (el, binding, vnode) {
     CheckComponentMethods()
     let appId = binding.value
@@ -10,7 +10,7 @@ Vue.directive('facebook-signin-button', {
 
     facebookSignInAPI.onload = InitFacebookButton
 
-    function InitFacebookButton () {
+    function InitFacebookButton() {
       FB.init({
         appId: appId,
         xfbml: true,
@@ -21,7 +21,7 @@ Vue.directive('facebook-signin-button', {
 
     el.addEventListener('click', PopUp)
 
-    function PopUp () {
+    function PopUp() {
       FB.login(function (facebookResponse) {
         if (facebookResponse.status === 'connected') {
           OnSuccess(facebookResponse.authResponse.accessToken)
@@ -30,13 +30,13 @@ Vue.directive('facebook-signin-button', {
         }
       })
     }
-    function OnSuccess (token) {
+    function OnSuccess(token) {
       vnode.context.OnFacebookAuthSuccess(token)
     }
-    function Onfail () {
+    function Onfail() {
       vnode.context.OnFacebookAuthFail('Facebook sign-in failed')
     }
-    function CheckComponentMethods () {
+    function CheckComponentMethods() {
       if (!vnode.context.OnFacebookAuthSuccess) {
         throw new Error('The method OnFacebookAuthSuccess must be defined on the component')
       }
